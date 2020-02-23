@@ -10,12 +10,12 @@ aws s3 cp $2 s3://$1
 
 #---- Content discovery ----
 thewadl(){ #this grabs endpoints from a application.wadl and puts them in yahooapi.txt
-curl -s $1 | grep path | sed -n "s/.*resource path=\"\(.*\)\".*/\1/p" | tee -a ~/tools/dirsearch/db/yahooapi.txt
+curl -s $1 | grep path | sed -n "s/.*resource path=\"\(.*\)\".*/\1/p" | tee -a $INFOSEC_TOOLS_DIR/dirsearch/db/yahooapi.txt
 }
 
 #----- recon -----
 crtndstry(){
-./tools/crtndstry/crtndstry $1
+$INFOSEC_TOOLS_DIR/crtndstry/crtndstry $1
 }
 
 am(){ #runs amass passively and saves to json
@@ -50,7 +50,7 @@ curl http://ipinfo.io/$1
 
 #------ Tools ------
 dirsearch(){ # runs dirsearch and takes host and extension as arguments
-python3 ~/tools/dirsearch/dirsearch.py -u $1 -e $2 -t 50 -b 
+python3 $INFOSEC_TOOLS_DIR/dirsearch/dirsearch.py -u $1 -e $2 -t 50 -b 
 }
 
 #sqlmap(){
